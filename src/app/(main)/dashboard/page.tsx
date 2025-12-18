@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import { basePath } from "@/lib/basePath";
 import emailjs from "@emailjs/browser";
 
 import Image from "next/image";
@@ -31,6 +32,13 @@ export default function Dashboard() {
     const SERVICE_ID = "service_flzw2pn";
     const TEMPLATE_ID = "template_g7mfczd";
     const PUBLIC_KEY = "sPSYF9JKWfpi8DEJO";
+
+    const handleScrollTo = (id: string) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    };
 
     if (form.current) {
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
@@ -64,7 +72,7 @@ export default function Dashboard() {
       >
         <div className="absolute top-0 left-0 px-7 py-6">
           <img
-            src="/portfolio-putra-azam/logo-header.svg"
+            src={`${basePath}/logo-header.svg`}
             alt="Logo"
             width={150}
             height={150}
@@ -73,7 +81,7 @@ export default function Dashboard() {
         </div>
 
         <div className="absolute top-0 right-0 px-7 py-6 hidden md:block">
-          <a className="" href="">
+          <a className="" href="#contact">
             <p className="border px-6 py-2 rounded-full text-white font-display hover:text-black hover:border-orange-100 flex items-center gap-4 bg-white/10 backdrop-blur-md hover:bg-orange-100 transition-all duration-200 ">
               <span className="w-2 h-2 rounded-full bg-green-400"></span>
               Available
@@ -112,7 +120,7 @@ export default function Dashboard() {
           className={`relative flex-shrink-0 ${IMAGE_SETTINGS.width} ${IMAGE_SETTINGS.aspectRatio} ${IMAGE_SETTINGS.borderRadius} overflow-hidden shadow-2xl z-20`}
         >
           <Image
-            src="/portfolio-putra-azam/about-me.jpg"
+            src="/about-me.jpg"
             alt="About Me"
             fill
             className="object-cover"

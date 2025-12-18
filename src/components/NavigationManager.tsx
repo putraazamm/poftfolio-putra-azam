@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { basePath } from "@/lib/basePath";
 import Navbar from "@/components/ui/Navbar";
 import Image from "next/image";
 import Dock from "@/components/Dock";
@@ -101,7 +102,7 @@ export default function NavigationManager() {
                   className="pointer-events-auto cursor-pointer"
                 >
                   <img
-                    src="/portfolio-putra-azam/asterisk-logo.svg"
+                    src={`${basePath}/asterisk-logo.svg`}
                     alt="Asterisk Logo"
                     width={67}
                     height={67}
