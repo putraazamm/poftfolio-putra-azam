@@ -1,17 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { name: "Home", href: "/#home" },
-    { name: "About", href: "/#about" },
-    { name: "Experience", href: "/#experience" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Experience", href: "#experience" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -20,13 +19,13 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 px-8 py-3 items-center rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-white shadow-lg pointer-events-auto">
           {links.map((link) => (
-            <Link
+            <a
               key={link.name}
               href={link.href}
               className="text-white font-display font-medium hover:text-[#d05300] transition-all duration-200"
             >
               {link.name}
-            </Link>
+            </a>
           ))}
         </div>
 
@@ -53,14 +52,14 @@ export default function Navbar() {
 
           <nav className="flex flex-col items-center gap-8">
             {links.map((link) => (
-              <Link
+              <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className="text-4xl font-display font-semibold text-white hover:text-orange-500 transition-all duration-200"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </nav>
         </div>

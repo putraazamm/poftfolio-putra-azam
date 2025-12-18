@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 import Navbar from "@/components/ui/Navbar";
 import Image from "next/image";
 import Dock from "@/components/Dock";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 import {
   Home,
   User,
@@ -19,7 +17,6 @@ import { AnimatePresence, color, motion } from "motion/react";
 
 export default function NavigationManager() {
   const [showDock, setShowDock] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,26 +32,33 @@ export default function NavigationManager() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleScrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const dockItems = [
     {
       icon: <Home size={18} className="text-white" />,
       label: "Home",
-      onClick: () => router.push("/#home"),
+      onClick: () => handleScrollTo("home"),
     },
     {
       icon: <User size={18} className="text-white" />,
       label: "About",
-      onClick: () => router.push("/#about"),
+      onClick: () => handleScrollTo("about"),
     },
     {
       icon: <Briefcase size={18} className="text-white" />,
       label: "Experience",
-      onClick: () => router.push("/#experience"),
+      onClick: () => handleScrollTo("experience"),
     },
     {
       icon: <Mail size={18} className="text-white" />,
       label: "Contact",
-      onClick: () => router.push("/#contact"),
+      onClick: () => handleScrollTo("contact"),
     },
   ];
 
@@ -92,7 +96,10 @@ export default function NavigationManager() {
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="mix-blend-exclusion"
               >
-                <Link href="/#home" className="pointer-events-auto">
+                <div
+                  onClick={() => handleScrollTo("home")}
+                  className="pointer-events-auto cursor-pointer"
+                >
                   <img
                     src="/portfolio-putra-azam/asterisk-logo.svg"
                     alt="Asterisk Logo"
@@ -104,7 +111,7 @@ export default function NavigationManager() {
                     }}
                     className=""
                   />
-                </Link>
+                </div>
               </motion.div>
             </div>
           </>
