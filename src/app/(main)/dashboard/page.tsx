@@ -52,7 +52,7 @@ export default function Dashboard() {
           console.error("FAILED...", error);
           setIsSending(false);
           alert("Failed to send message. Please try again.");
-        }
+        },
       );
     }
   };
@@ -99,7 +99,7 @@ export default function Dashboard() {
             </h1>
           </div>
 
-          <p className="text-white text-sm md:text-lg mt-20 select-none p-5">
+          {/* <p className="text-white text-sm md:text-lg mt-20 select-none p-5">
             "Currently pursuing a Bachelor of Computer Science at the Technical
             University of Malaysia Malacca (UTeM), I specialize in bridging the
             gap between clean code and intuitive design. With a focus on
@@ -107,7 +107,7 @@ export default function Dashboard() {
             building functional, user-centric digital experiences. I thrive in
             collaborative environments and am driven by the challenge of turning
             complex problems into elegant software solutions."
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -188,7 +188,7 @@ export default function Dashboard() {
       >
         {/* Section Title */}
         <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-16">
-          Experience
+          Journey & Experience
         </h2>
 
         {/* Experience List */}
