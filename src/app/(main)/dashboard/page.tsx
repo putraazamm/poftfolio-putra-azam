@@ -120,7 +120,7 @@ export default function Dashboard() {
           className={`relative flex-shrink-0 ${IMAGE_SETTINGS.width} ${IMAGE_SETTINGS.aspectRatio} ${IMAGE_SETTINGS.borderRadius} overflow-hidden shadow-2xl z-20`}
         >
           <Image
-            src="/about-me.jpg"
+            src={`${basePath}/about-me.jpg`}
             alt="About Me"
             fill
             className="object-cover"
