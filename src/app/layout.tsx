@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, DM_Sans } from "next/font/google";
+import NavigationManager from "@/components/NavigationManager";
+import Aurora from "@/components/Aurora";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +12,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -25,9 +33,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} antialiased bg-black`}
       >
-        {children}
+        <div className="fixed inset-0 z-0">
+          <Aurora speed={0.5} colorStops={["#d05300", "#ff9c78", "#d05300"]} />
+        </div>
+        <div className="relative z-10 w-full h-full min-h-screen">
+          <NavigationManager />
+          {children}
+        </div>
       </body>
     </html>
   );
