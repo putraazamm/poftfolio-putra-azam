@@ -101,7 +101,7 @@ export default function Dashboard() {
             alt="Logo"
             width={150}
             height={150}
-            className="w-1/4 md:w-1/2 lg:w-1/3"
+            className="w-24 md:w-32 lg:w-35"
           />
         </div>
 
