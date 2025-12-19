@@ -1,10 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+
+import { useLenis } from "@/components/SmoothScrolling";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (isOpen) {
+      lenis?.stop();
+      document.body.style.overflow = "hidden";
+    } else {
+      lenis?.start();
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      lenis?.start();
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, lenis]);
 
   const links = [
     { name: "Home", href: "#home" },
@@ -34,6 +52,7 @@ export default function Navbar() {
         <div className="md:flex lg:hidden flex w-full justify-end items-center pointer-events-auto">
           <button
             onClick={() => setIsOpen(true)}
+            onScroll={() => setIsOpen(false)}
             className="p-3 rounded-full backdrop-blur-md bg-white/10 border border-white/20 text-white shadow-lg"
           >
             <Menu size={24} />

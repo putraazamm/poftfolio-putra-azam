@@ -1,22 +1,32 @@
 "use client";
 
-import { useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Lenis from "lenis";
 
-export default function SmoothScrolling() {
+const LenisContext = createContext<Lenis | null>(null);
+
+export const useLenis = () => useContext(LenisContext);
+
+export default function SmoothScrolling({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [lenis, setLenis] = useState<Lenis | null>(null);
+
   useEffect(() => {
-    const lenis = new Lenis({
+    const lenisInstance = new Lenis({
       autoRaf: true,
     });
-
-    lenis.on("scroll", (e) => {
-      // console.log(e); // Uncomment for debugging
-    });
+    setLenis(lenisInstance);
 
     return () => {
-      lenis.destroy();
+      lenisInstance.destroy();
+      setLenis(null);
     };
   }, []);
 
-  return null;
+  return (
+    <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>
+  );
 }

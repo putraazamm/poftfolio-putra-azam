@@ -46,8 +46,7 @@ export default function RootLayout({
           <Aurora speed={0.5} colorStops={["#d05300", "#ff9c78", "#d05300"]} />
         </div>
         <div className="relative z-10 w-full h-full min-h-screen">
-          <SmoothScrolling/>
-          {children}
+          <SmoothScrolling>{children}</SmoothScrolling>
         </div>
       </body>
     </html>
